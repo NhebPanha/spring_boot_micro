@@ -1,5 +1,4 @@
 package com.example.spring_micro.repository
-
 import com.example.spring_micro.model.User
 import org.springframework.data.jpa.repository.JpaRepository
 
