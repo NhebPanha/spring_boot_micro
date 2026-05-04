@@ -1,4 +1,4 @@
-package org.example.spring.dto.Users
+package org.example.spring.dto.User
 
 data class UserResponse(
     val id: Long,

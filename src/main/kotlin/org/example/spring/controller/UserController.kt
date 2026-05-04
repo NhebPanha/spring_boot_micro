@@ -1,7 +1,7 @@
 package com.example.spring_micro.controller
 
-import org.example.spring.dto.Users.UserRequest
-import org.example.spring.dto.Users.UserResponse
+import org.example.spring.dto.User.UserRequest
+import org.example.spring.dto.User.UserResponse
 import com.example.spring_micro.service.UserService
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*

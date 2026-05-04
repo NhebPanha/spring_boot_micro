@@ -1,8 +1,6 @@
-package org.example.spring.dto.Users
-
+package org.example.spring.dto.User
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
-
 data class UserRequest(
     @field:NotBlank
     val username: String,

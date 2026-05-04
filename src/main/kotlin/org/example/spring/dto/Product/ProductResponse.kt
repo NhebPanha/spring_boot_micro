@@ -1,7 +1,5 @@
 package com.example.spring_micro.dto
-
 import java.time.LocalDateTime
-
 data class ProductResponse(
     val id: Long,
     val name: String,
