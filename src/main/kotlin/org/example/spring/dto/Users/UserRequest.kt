@@ -1,4 +1,5 @@
-package com.example.spring_micro.dto
+package org.example.spring.dto.Users
+
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 

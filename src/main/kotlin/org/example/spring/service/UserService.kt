@@ -1,6 +1,6 @@
 package com.example.spring_micro.service
-import com.example.spring_micro.dto.UserRequest
-import com.example.spring_micro.dto.UserResponse
+import org.example.spring.dto.Users.UserRequest
+import org.example.spring.dto.Users.UserResponse
 import com.example.spring_micro.mapper.toEntity
 import com.example.spring_micro.mapper.toResponse
 import com.example.spring_micro.repository.UserRepository
