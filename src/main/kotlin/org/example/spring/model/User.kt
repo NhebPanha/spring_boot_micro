@@ -1,6 +1,7 @@
 package com.example.spring_micro.model
 
 import jakarta.persistence.*
+import org.antlr.v4.runtime.Token
 import java.time.LocalDateTime
 
 @Entity
@@ -20,5 +21,7 @@ data class User(
     @Column(nullable = false)
     val password: String,
 
-    val createdAt: LocalDateTime = LocalDateTime.now()
+    val createdAt: LocalDateTime = LocalDateTime.now(),
+
+    val updatedAt: LocalDateTime = LocalDateTime.now(),
 )

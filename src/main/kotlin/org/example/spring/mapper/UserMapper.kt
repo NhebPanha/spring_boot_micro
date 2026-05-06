@@ -7,7 +7,7 @@ fun UserRequest.toEntity(): User {
     return User(
         username = username,
         email = email,
-        password = password
+        password = password,
     )
 }
 
