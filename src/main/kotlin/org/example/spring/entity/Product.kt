@@ -1,4 +1,4 @@
-package com.example.spring_micro.model
+package com.example.spring_micro.entity
 
 import jakarta.persistence.*
 import java.time.LocalDateTime

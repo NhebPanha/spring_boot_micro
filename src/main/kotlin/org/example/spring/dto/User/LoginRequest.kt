@@ -3,10 +3,7 @@ package com.example.spring_micro.dto.User
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 
-data class UserRequest(
-    @field:NotBlank
-    val username: String,
-
+data class LoginRequest(
     @field:Email
     val email: String,
 

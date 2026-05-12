@@ -1,4 +1,4 @@
-package com.example.spring_micro.model
+package com.example.spring_micro.entity
 
 import jakarta.persistence.*
 import org.antlr.v4.runtime.Token
@@ -20,6 +20,9 @@ data class User(
 
     @Column(nullable = false)
     val password: String,
+
+    @Enumerated(EnumType.STRING)
+    var role: Role = Role.CUSTOMER,
 
     val createdAt: LocalDateTime = LocalDateTime.now(),
 

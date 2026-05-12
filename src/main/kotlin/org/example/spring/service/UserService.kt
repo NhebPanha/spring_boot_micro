@@ -1,19 +1,22 @@
 package com.example.spring_micro.service
 
-import org.example.spring.dto.User.UserRequest
-import org.example.spring.dto.User.UserResponse
-import com.example.spring_micro.model.User
+import com.example.spring_micro.dto.User.LoginRequest
+import com.example.spring_micro.dto.User.UserRequest
+import com.example.spring_micro.dto.User.UserResponse
+import com.example.spring_micro.entity.User
 import com.example.spring_micro.repository.UserRepository
+import com.example.spring_micro.security.JwtUtil
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class UserService(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val jwtUtil: JwtUtil,
+    private val passwordEncoder: PasswordEncoder
 ) {
-
     // REGISTER
     fun register(request: UserRequest): UserResponse {
-
         if (userRepository.findByEmail(request.email) != null) {
             throw RuntimeException("Email already exists")
         }
@@ -21,32 +24,38 @@ class UserService(
         val user = User(
             username = request.username,
             email = request.email,
-            password = request.password
+            password = passwordEncoder.encode(request.password)!!,
         )
 
         val saved = userRepository.save(user)
+        val token = jwtUtil.generateToken(saved.email, saved.role.name)
 
         return UserResponse(
             id = saved.id,
             username = saved.username,
-            email = saved.email
+            email = saved.email,
+            role = saved.role.name,
+            token = token
         )
     }
 
     // LOGIN
-    fun login(request: UserRequest): UserResponse {
-
+    fun login(request: LoginRequest): UserResponse {
         val user = userRepository.findByEmail(request.email)
             ?: throw RuntimeException("User not found")
 
-        if (user.password != request.password) {
-            throw RuntimeException("Invalid password")
+        if (!passwordEncoder.matches(request.password, user.password)) {
+            throw RuntimeException("Invalid login credentials")
         }
+
+        val token = jwtUtil.generateToken(user.email, user.role.name)
 
         return UserResponse(
             id = user.id,
             username = user.username,
-            email = user.email
+            email = user.email,
+            role = user.role.name,
+            token = token
         )
     }
 
@@ -56,7 +65,9 @@ class UserService(
             UserResponse(
                 id = user.id,
                 username = user.username,
-                email = user.email
+                email = user.email,
+                role = user.role.name,
+                token = ""
             )
         }
     }

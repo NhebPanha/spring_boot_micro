@@ -1,7 +1,8 @@
 package com.example.spring_micro.mapper
-import org.example.spring.dto.User.UserRequest
-import org.example.spring.dto.User.UserResponse
-import com.example.spring_micro.model.User
+
+import com.example.spring_micro.dto.User.UserRequest
+import com.example.spring_micro.dto.User.UserResponse
+import com.example.spring_micro.entity.User
 
 fun UserRequest.toEntity(): User {
     return User(
@@ -15,6 +16,8 @@ fun User.toResponse(): UserResponse {
     return UserResponse(
         id = id,
         username = username,
-        email = email
+        email = email,
+        role = role.name,
+        token = ""
     )
 }

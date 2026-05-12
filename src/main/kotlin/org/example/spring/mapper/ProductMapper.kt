@@ -1,7 +1,7 @@
 package com.example.spring_micro.mapper
 import com.example.spring_micro.dto.ProductRequest
 import com.example.spring_micro.dto.ProductResponse
-import com.example.spring_micro.model.Product
+import com.example.spring_micro.entity.Product
 
 fun ProductRequest.toEntity(): Product {
     return Product(

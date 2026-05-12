@@ -1,6 +1,8 @@
 package com.example.spring_micro.controller
-import org.example.spring.dto.User.UserRequest
-import org.example.spring.dto.User.UserResponse
+
+import com.example.spring_micro.dto.User.UserRequest
+import com.example.spring_micro.dto.User.UserResponse
+import com.example.spring_micro.dto.User.LoginRequest
 import com.example.spring_micro.service.UserService
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
@@ -22,12 +24,12 @@ class AuthController(
     // ✅ LOGIN
     @PostMapping("/login")
     fun login(
-        @Valid @RequestBody request: UserRequest
+        @Valid @RequestBody request: LoginRequest
     ): UserResponse {
         return userService.login(request)
     }
 
-    // ✅ Get User
+    // ✅ Get all users (ADMIN / AUTHORIZED)
     @GetMapping("/users")
     fun getAllUsers(): List<UserResponse> {
         return userService.getAllUsers()
